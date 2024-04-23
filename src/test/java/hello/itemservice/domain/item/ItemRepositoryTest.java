@@ -1,22 +1,22 @@
 package hello.itemservice.domain.item;
 
+import hello.itemservice.domain.item.service.ItemServiceImpl;
+import hello.itemservice.domain.item.vo.Item;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 // 최근 Junit5에서는 public이 없어도 됨
 class ItemRepositoryTest {
 
-    ItemRepository itemRepository = new ItemRepository();
+    ItemServiceImpl itemService = new ItemServiceImpl();
 
-    // 다음 테스트 시 데이터 제거 용
-    @AfterEach
-    void afterEach() {
-        itemRepository.clearStore();
-    }
+//    // 다음 테스트 시 데이터 제거 용
+//    @AfterEach
+//    void afterEach() {
+//        itemService.clearStore();
+//    }
 
 
     @Test
@@ -26,10 +26,10 @@ class ItemRepositoryTest {
         Item item = new Item("itemA", 10000, 10);
 
         //when
-        Item saveItem = itemRepository.save(item);
+        Item saveItem = itemService.save(item);
 
         //then
-        Item findItem = itemRepository.findById(item.getId());
+        Item findItem = itemService.findById(item.getId());
         assertThat(findItem).isEqualTo(saveItem);
     }
 

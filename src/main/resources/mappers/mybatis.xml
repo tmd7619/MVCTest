@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hello.itemservice.domain.item.repository.ItemMapper">
+
+    <insert id="save">
+        INSERT INTO items (name, price, quantity)
+        VALUES (#{itemName}, #{price}, #{quantity})
+    </insert>
+
+    <select id="findById" resultType="hello.itemservice.domain.item.vo.Item">
+        SELECT * FROM items WHERE id = #{id}
+    </select>
+
+    <select id="findAll" resultType="hello.itemservice.domain.item.vo.Item">
+        SELECT * FROM items
+    </select>
+
+    <update id="update">
+        UPDATE items
+        SET name = #{itemName}, price = #{price}, quantity = #{quantity}
+        WHERE id = #{itemId}
+    </update>
+
+    <delete id="clearStore">
+        DELETE FROM items
+    </delete>
+</mapper>
